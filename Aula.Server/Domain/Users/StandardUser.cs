@@ -44,31 +44,4 @@ internal sealed class StandardUser : User
 	public required Int32 AccessFailedCount { get; set; }
 
 	public DateTime? LockoutEndTime { get; set; }
-
-	public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-	{
-		foreach (var result in base.Validate(validationContext))
-			yield return result;
-
-		if (UserName.Any(c => !UserNameValidChars.Contains(c)))
-		{
-			yield return new ValidationResult(
-				$"The {nameof(UserName)} contains an invalid character.", [ nameof(UserName) ]);
-		}
-
-		if (!IsDeleted)
-			yield break;
-
-		if (String.IsNullOrEmpty(Email))
-		{
-			yield return new ValidationResult($"A deleted user cannot have a not empty {nameof(Email)}.",
-				[ nameof(Email) ]);
-		}
-
-		if (String.IsNullOrEmpty(PasswordHash))
-		{
-			yield return new ValidationResult($"A deleted user cannot have a not empty {nameof(PasswordHash)}.",
-				[ nameof(PasswordHash) ]);
-		}
-	}
 }
