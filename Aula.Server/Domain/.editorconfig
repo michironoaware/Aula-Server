@@ -1,0 +1,6 @@
+[*.cs]
+dotnet_diagnostic.CA1852.severity = none
+resharper_class_never_instantiated_global_highlighting = none
+resharper_unused_member_global_highlighting = none
+resharper_virtual_member_call_in_constructor_highlighting = none
+resharper_class_with_virtual_members_never_inherited_global_highlighting = none

@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<PublishAot>false</PublishAot>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<CodeAnalysisRuleSet>../stylecop.ruleset</CodeAnalysisRuleSet>
+		<WarningLevel>4</WarningLevel>
+		<NoWarn>1701;1702;RS1035</NoWarn>
+		<RootNamespace>Aula.Server</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="../stylecop.json"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="**\*_*.cs"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.5"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5"/>
+		<PackageReference Include="Asp.Versioning.Http" Version="8.1.0"/>
+		<PackageReference Include="MartinCostello.OpenApi.Extensions" Version="1.1.0"/>
+		<PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1"/>
+		<PackageReference Include="Scalar.AspNetCore" Version="2.2.7"/>
+		<PackageReference Include="FluentValidation" Version="12.0.0"/>
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0"/>
+		<PackageReference Include="MediatR" Version="12.5.0"/>
+		<PackageReference Include="Polly.Core" Version="8.5.2"/>
+		<PackageReference Include="Polly.Extensions" Version="8.5.2"/>
+	</ItemGroup>
+</Project>
