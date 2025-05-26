@@ -26,7 +26,7 @@ internal sealed record RoomData
 	/// <summary>
 	///     The description of the room.
 	/// </summary>
-	public String? Description { get; init; }
+	public required String Description { get; init; }
 
 	/// <summary>
 	///     Whether the room serves as an entry point for users without an established current room.
