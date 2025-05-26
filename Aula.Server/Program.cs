@@ -46,7 +46,8 @@ builder.Services
 	.AddOpenApi()
 	.AddOpenApiExtensions(static options => options.XmlDocumentationAssemblies.Add(typeof(Program).Assembly))
 	.AddValidatorsFromAssemblyContaining<Program>(ServiceLifetime.Singleton, includeInternalTypes: true)
-	.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+	.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>())
+	.AddMemoryCache();
 
 builder.Services
 	.AddCommands<Program>()
