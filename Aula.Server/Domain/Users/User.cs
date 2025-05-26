@@ -85,23 +85,5 @@ internal abstract class User : DomainEntity
 	[Obsolete("Need to check if selecting this through Queryable.Select has unexpected behavior.")]
 	public Permissions Permissions => RoleAssignments.Select(ra => ra.Role.Permissions).Aggregate((a, b) => a | b);
 
-	public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-	{
-		if (DisplayName.Any(c => !DisplayNameValidChars.Contains(c)))
-		{
-			yield return new ValidationResult(
-				$"The {nameof(DisplayName)} contains an invalid character.", [ nameof(DisplayName) ]);
-		}
-
-		if (!IsDeleted)
-			yield break;
-
-		if (SecurityStamp is not null)
-		{
-			yield return new ValidationResult($"Deleted user cannot have a not-null {nameof(SecurityStamp)}.",
-				[ nameof(SecurityStamp) ]);
-		}
-	}
-
 	private static String GenerateConcurrencyStamp() => Guid.NewGuid().ToString("N");
 }
