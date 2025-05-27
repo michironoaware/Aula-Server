@@ -18,7 +18,7 @@ internal sealed class LiftBan : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
-		_ = route.MapDelete("bans/{banId}", HandleAsync)
+		_ = route.MapPost("bans/{banId}/lift", HandleAsync)
 			.RequireAuthenticatedUser()
 			.RequireConfirmedEmail()
 			.RequirePermissions(Permissions.BanUsers)
@@ -26,7 +26,7 @@ internal sealed class LiftBan : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<NoContent, NotFound, ProblemHttpResult, InternalServerError>> HandleAsync(
 		[FromRoute] Snowflake banId,
 		[FromServices] AppDbContext dbContext,
 		[FromServices] IPublisher publisher,
@@ -37,8 +37,11 @@ internal sealed class LiftBan : IApiEndpoint
 		var ban = await dbContext.Bans
 			.Where(b => b.Id == banId)
 			.FirstOrDefaultAsync(ct);
-		if (ban is null or { IsLifted: true })
-			return TypedResults.NoContent();
+		switch (ban)
+		{
+			case null: return TypedResults.NotFound();
+			case { IsLifted: true }: return TypedResults.NoContent();
+		}
 
 		ban.IsLifted = true;
 		ban.ConcurrencyStamp = Guid.NewGuid().ToString("N");
