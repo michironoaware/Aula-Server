@@ -1,5 +1,4 @@
-﻿using Aula.Server.Domain.Users;
-using Aula.Server.Features.Identity.Shared;
+﻿using Aula.Server.Features.Identity.Shared;
 using Aula.Server.Shared.Endpoints;
 using Aula.Server.Shared.Identity;
 using Aula.Server.Shared.Tokens;
@@ -34,7 +33,7 @@ internal sealed class LogInEndpoint : IApiEndpoint
 		}
 
 		var user = await userManager.FindByUserNameAsync(body.UserName);
-		if (user?.Type is not UserType.Standard)
+		if (user is null)
 			return TypedResults.Problem(ProblemDetailsDefaults.UserDoesNotExist);
 
 		var isPasswordCorrect = userManager.CheckPassword(user, body.Password);
