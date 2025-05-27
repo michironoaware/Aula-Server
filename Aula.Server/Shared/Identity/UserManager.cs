@@ -302,11 +302,23 @@ internal sealed class UserManager
 		_ = await _dbContext.SaveChangesAsync();
 	}
 
-	internal async ValueTask<Boolean> HasPermissionAsync(Permissions permissions, Permissions permissionFlag)
-		=> permissions.HasFlag(permissionFlag) || (await GetGlobalRole()).Permissions.HasFlag(permissionFlag);
+	internal async ValueTask<Permissions> GetPermissionsAsync(IEnumerable<RoleAssignment> roleAssignments)
+	{
+		var userPermissions = roleAssignments.Select(ra => ra.Role.Permissions).Aggregate((a, b) => a | b);
+		var globalRolePermissions = (await GetGlobalRole()).Permissions;
+		return userPermissions & globalRolePermissions;
+	}
+
+	internal async ValueTask<Permissions> GetPermissionsAsync(User user) =>
+		await GetPermissionsAsync(user.RoleAssignments);
 
 	internal async ValueTask<Boolean> HasPermissionAsync(User user, Permissions permissionFlag)
-		=> await HasPermissionAsync(user.Permissions, permissionFlag);
+		=> (await GetPermissionsAsync(user)).HasFlag(permissionFlag);
+
+	internal async ValueTask<Boolean> HasPermissionAsync(
+		IEnumerable<RoleAssignment> roleAssignments,
+		Permissions permissionFlag)
+		=> (await GetPermissionsAsync(roleAssignments)).HasFlag(permissionFlag);
 
 	private async ValueTask<Role> GetGlobalRole()
 	{

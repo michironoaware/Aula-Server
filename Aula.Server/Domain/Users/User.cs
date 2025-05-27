@@ -82,8 +82,5 @@ internal abstract class User : DomainEntity
 	[ConcurrencyCheck]
 	public required String ConcurrencyStamp { get; set; }
 
-	[Obsolete("Need to check if selecting this through Queryable.Select has unexpected behavior.")]
-	public Permissions Permissions => RoleAssignments.Select(ra => ra.Role.Permissions).Aggregate((a, b) => a | b);
-
 	private static String GenerateConcurrencyStamp() => Guid.NewGuid().ToString("N");
 }

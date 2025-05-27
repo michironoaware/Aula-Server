@@ -111,10 +111,10 @@ internal sealed class PresenceUpdater :
 
 		var user = await _dbContext.Users
 			.Where(u => u.Id == session.UserId)
-			.Select(u => new { u.RoleAssignments, u.Permissions })
+			.Select(u => new { u.RoleAssignments })
 			.FirstOrDefaultAsync(cancellationToken);
 
-		if (user is null || !await _userManager.HasPermissionAsync(user.Permissions, Permissions.Administrator))
+		if (user is null || !await _userManager.HasPermissionAsync(user.RoleAssignments, Permissions.Administrator))
 			return;
 
 		UpdatePresenceEventData data;
