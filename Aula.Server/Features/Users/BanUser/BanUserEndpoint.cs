@@ -65,11 +65,11 @@ internal sealed class BanUserEndpoint : IApiEndpoint
 
 		var targetUser = await dbContext.Users
 			.Where(u => u.Id == userId)
-			.Select(u => new { u.RoleAssignments })
+			.Select(u => new { Permissions = u.RoleAssignments.Select(ra => ra.Role.Permissions) })
 			.FirstOrDefaultAsync(ct);
 		if (targetUser is null)
 			return TypedResults.Problem(ProblemDetailsDefaults.TargetDoesNotExist);
-		if (await userManager.HasPermissionAsync(targetUser.RoleAssignments, Permissions.Administrator))
+		if (await userManager.HasPermissionAsync(targetUser.Permissions, Permissions.Administrator))
 			return TypedResults.Problem(ProblemDetailsDefaults.TargetIsAdministrator);
 
 		var ban = new UserBan(await snowflakes.GenerateAsync(), currentUserId, body.Reason, userId!);
