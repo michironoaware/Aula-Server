@@ -5,7 +5,7 @@ using Aula.Server.Shared.Gateway;
 using Aula.Server.Shared.Identity;
 using MediatR;
 
-namespace Aula.Server.Features.Gateway.Events.BanCreated;
+namespace Aula.Server.Features.Gateway.Events.BanIssued;
 
 internal sealed class BanIssuedEventDispatcher : INotificationHandler<BanIssuedEvent>
 {
