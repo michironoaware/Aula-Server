@@ -54,7 +54,7 @@ internal enum Permissions : UInt64
 	ManageFiles = 1 << 8,
 
 	/// <summary>
-	///     Allows to create, modify and remove roles.
+	///     Allows to create, modify, remove and assign roles.
 	/// </summary>
 	ManageRoles = 1 << 9,
 
