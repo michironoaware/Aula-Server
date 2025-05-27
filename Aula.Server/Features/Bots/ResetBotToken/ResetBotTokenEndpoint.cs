@@ -1,4 +1,5 @@
 ﻿using Aula.Server.Domain.Users;
+using Aula.Server.Features.Bots.ResetBot;
 using Aula.Server.Shared.Authorization;
 using Aula.Server.Shared.Endpoints;
 using Aula.Server.Shared.Identity;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Bots.ResetBot;
+namespace Aula.Server.Features.Bots.ResetBotToken;
 
 internal sealed class ResetBotTokenEndpoint : IApiEndpoint
 {
