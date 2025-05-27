@@ -101,6 +101,7 @@ internal sealed class UserManager
 			.AsNoTracking()
 			.Where(u => u.Id == userId)
 			.Include(u => u.RoleAssignments)
+			.ThenInclude(u => u.Role)
 			.FirstOrDefaultAsync();
 
 		if (user is not null)
