@@ -16,7 +16,7 @@ internal sealed class GetRoleEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
-		_ = route.MapGet("role/{roleId}", HandleAsync)
+		_ = route.MapGet("roles/{roleId}", HandleAsync)
 			.RequireAuthenticatedUser()
 			.RequireConfirmedEmail()
 			.DenyBannedUsers()
