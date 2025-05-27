@@ -19,7 +19,6 @@ internal sealed class LogOutEndpoint : IApiEndpoint
 	public void Build(IEndpointRouteBuilder route)
 	{
 		_ = route.MapPost("identity/log-out", HandleAsync)
-			.RequireUserType(UserType.Standard)
 			.HasApiVersion(1);
 	}
 
