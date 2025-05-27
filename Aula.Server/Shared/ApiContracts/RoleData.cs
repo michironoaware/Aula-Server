@@ -11,5 +11,5 @@ internal sealed record RoleData
 
 	public required Permissions Permissions { get; init; }
 
-	public required Int32 Index { get; init; }
+	public required Int32 Position { get; init; }
 }

@@ -70,6 +70,6 @@ internal static class MappingExtensions
 
 	internal static RoleData ToRoleData(this Role role) => new()
 	{
-		Id = role.Id, Name = role.Name, Permissions = role.Permissions, Index = role.Position,
+		Id = role.Id, Name = role.Name, Permissions = role.Permissions, Position = role.Position,
 	};
 }
