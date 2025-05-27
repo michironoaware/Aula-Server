@@ -5,7 +5,7 @@ using Aula.Server.Shared.Gateway;
 using Aula.Server.Shared.Identity;
 using MediatR;
 
-namespace Aula.Server.Features.Gateway.Events.BanRemoved;
+namespace Aula.Server.Features.Gateway.Events.BanLifted;
 
 internal sealed class BanLiftedEventDispatcher : INotificationHandler<BanLiftedEvent>
 {
