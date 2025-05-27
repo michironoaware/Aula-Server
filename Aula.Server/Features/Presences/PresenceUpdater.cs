@@ -64,7 +64,8 @@ internal sealed class PresenceUpdater :
 				user!.Presence = GetPresenceFromOption(state.Notification.Presence);
 				user.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 				_ = await state.DbContext.SaveChangesAsync(ct);
-				await state.Publisher.Publish(new UserUpdatedEvent(user), CancellationToken.None);
+				await state.Publisher.Publish(new UserPresenceUpdatedEvent(user.Id, user.Presence),
+					CancellationToken.None);
 				_ = state.PresenceState.UpdateSemaphore.Release();
 			},
 			(DbContext: _dbContext, PresenceState: presenceState, Session: session, Publisher: _publisher,
@@ -94,7 +95,8 @@ internal sealed class PresenceUpdater :
 				user!.Presence = Presence.Offline;
 				user.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 				_ = await state.DbContext.SaveChangesAsync(ct);
-				await state.Publisher.Publish(new UserUpdatedEvent(user), CancellationToken.None);
+				await state.Publisher.Publish(new UserPresenceUpdatedEvent(user.Id, user.Presence),
+					CancellationToken.None);
 				_ = state.PresenceState.UpdateSemaphore.Release();
 			}, (DbContext: _dbContext, PresenceState: presenceState, Session: session, Publisher: _publisher),
 			cancellationToken);
@@ -143,7 +145,8 @@ internal sealed class PresenceUpdater :
 				user!.Presence = GetPresenceFromOption(state.Presence);
 				user.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 				_ = await state.DbContext.SaveChangesAsync(ct);
-				await state.Publisher.Publish(new UserUpdatedEvent(user), CancellationToken.None);
+				await state.Publisher.Publish(new UserPresenceUpdatedEvent(user.Id, user.Presence),
+					CancellationToken.None);
 				_ = state.PresenceState.UpdateSemaphore.Release();
 			},
 			(DbContext: _dbContext, PresenceState: presenceState, Session: session, Publisher: _publisher,
