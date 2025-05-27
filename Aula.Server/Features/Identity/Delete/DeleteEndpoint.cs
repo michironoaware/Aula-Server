@@ -17,7 +17,7 @@ internal sealed class DeleteEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
-		_ = route.MapGet("identity/delete", HandleAsync)
+		_ = route.MapPost("identity/delete", HandleAsync)
 			.HasApiVersion(1);
 	}
 
