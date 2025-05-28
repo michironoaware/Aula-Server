@@ -38,6 +38,7 @@ internal sealed class GetRoleEndpoint : IApiEndpoint
 					Permissions = r.Permissions,
 					Position = r.Position,
 					IsGlobal = r.IsGlobal,
+					CreationDate = r.CreationDate,
 				})
 			.FirstOrDefaultAsync();
 		if (role is null)

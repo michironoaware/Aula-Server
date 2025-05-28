@@ -75,5 +75,6 @@ internal static class MappingExtensions
 		Permissions = role.Permissions,
 		Position = role.Position,
 		IsGlobal = role.IsGlobal,
+		CreationDate = role.CreationDate,
 	};
 }

@@ -14,4 +14,6 @@ internal sealed record RoleData
 	public required Int32 Position { get; init; }
 
 	public required Boolean IsGlobal { get; init; }
+
+	public required DateTime CreationDate { get; init; }
 }

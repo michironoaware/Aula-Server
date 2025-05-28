@@ -67,6 +67,7 @@ internal sealed class GetRolesEndpoint : IApiEndpoint
 				Permissions = r.Permissions,
 				Position = r.Position,
 				IsGlobal = r.IsGlobal,
+				CreationDate = r.CreationDate,
 			})
 			.Take(count)
 			.ToArrayAsync(ct);
