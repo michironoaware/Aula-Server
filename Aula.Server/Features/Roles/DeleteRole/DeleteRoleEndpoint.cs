@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Roles.RemoveRole;
+namespace Aula.Server.Features.Roles.DeleteRole;
 
-internal sealed class RemoveRoleEndpoint : IApiEndpoint
+internal sealed class DeleteRoleEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
