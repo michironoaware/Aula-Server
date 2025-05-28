@@ -26,7 +26,7 @@ internal enum EventType
 	RoomUpdated,
 
 	/// <summary>
-	///     A room has been removed.
+	///     A room has been deleted.
 	/// </summary>
 	RoomDeleted,
 
@@ -61,12 +61,12 @@ internal enum EventType
 	UserStartedTyping,
 
 	/// <summary>
-	///     A user has been banned.
+	///     A ban has been issued.
 	/// </summary>
 	BanIssued,
 
 	/// <summary>
-	///     A user has been unbanned.
+	///     A ban has been lifted.
 	/// </summary>
 	BanLifted,
 
