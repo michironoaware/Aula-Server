@@ -28,7 +28,7 @@ internal enum EventType
 	/// <summary>
 	///     A room has been removed.
 	/// </summary>
-	RoomRemoved,
+	RoomDeleted,
 
 	/// <summary>
 	///     A user has been updated.
@@ -53,7 +53,7 @@ internal enum EventType
 	/// <summary>
 	///     A message has been deleted.
 	/// </summary>
-	MessageRemoved,
+	MessageDeleted,
 
 	/// <summary>
 	///     A user has started typing in a room.
@@ -68,7 +68,7 @@ internal enum EventType
 	/// <summary>
 	///     A user has been unbanned.
 	/// </summary>
-	BanRemoved,
+	BanLifted,
 
 	#endregion
 

@@ -22,7 +22,7 @@ internal sealed class MessageRemovedEventDispatcher : INotificationHandler<Messa
 		var payload = new GatewayPayload<MessageRemovedEventData>
 		{
 			Operation = OperationType.Dispatch,
-			Event = EventType.MessageRemoved,
+			Event = EventType.MessageDeleted,
 			Data = new MessageRemovedEventData { Id = notification.Message.Id },
 		};
 

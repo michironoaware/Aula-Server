@@ -36,7 +36,7 @@ internal enum Intents : UInt64
 	///         </item>
 	///         <item>
 	///             <term>
-	///                 <see cref="EventType.RoomRemoved" />
+	///                 <see cref="EventType.RoomDeleted" />
 	///             </term>
 	///         </item>
 	///         <item>
@@ -62,7 +62,7 @@ internal enum Intents : UInt64
 	///         </item>
 	///         <item>
 	///             <term>
-	///                 <see cref="EventType.MessageRemoved" />
+	///                 <see cref="EventType.MessageDeleted" />
 	///             </term>
 	///         </item>
 	///     </list>
@@ -78,7 +78,7 @@ internal enum Intents : UInt64
 	///         </item>
 	///         <item>
 	///             <term>
-	///                 <see cref="EventType.BanRemoved" />
+	///                 <see cref="EventType.BanLifted" />
 	///             </term>
 	///         </item>
 	///     </list>

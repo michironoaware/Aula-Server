@@ -19,7 +19,7 @@ internal sealed class RoomRemovedEventDispatcher : INotificationHandler<RoomDele
 		var payload = new GatewayPayload<RoomData>
 		{
 			Operation = OperationType.Dispatch,
-			Event = EventType.RoomRemoved,
+			Event = EventType.RoomDeleted,
 			Data = notification.Room.ToRoomData(),
 		};
 

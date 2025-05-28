@@ -22,7 +22,7 @@ internal sealed class BanLiftedEventDispatcher : INotificationHandler<BanLiftedE
 	{
 		var payload = new GatewayPayload<BanData>
 		{
-			Operation = OperationType.Dispatch, Event = EventType.BanRemoved, Data = notification.Ban.ToBanData(),
+			Operation = OperationType.Dispatch, Event = EventType.BanLifted, Data = notification.Ban.ToBanData(),
 		};
 
 		await _gatewayManager.DispatchEventAsync(payload, async (user, intents, userManager)
