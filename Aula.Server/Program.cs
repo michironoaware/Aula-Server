@@ -7,7 +7,7 @@ using Aula.Server.Features.Gateway.ConnectToGateway;
 using Aula.Server.Features.Identity.ConfirmEmail;
 using Aula.Server.Features.Identity.ResetPassword;
 using Aula.Server.Features.Identity.Shared;
-using Aula.Server.Features.Messages.RemoveMessage;
+using Aula.Server.Features.Messages.DeleteMessage;
 using Aula.Server.Features.Messages.SendMessage;
 using Aula.Server.Features.Presences;
 using Aula.Server.Shared.Authentication;

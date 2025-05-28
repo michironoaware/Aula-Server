@@ -4,16 +4,16 @@ using Aula.Server.Shared.Identity;
 using Aula.Server.Shared.RateLimiting;
 using Microsoft.Extensions.Options;
 
-namespace Aula.Server.Features.Messages.RemoveMessage;
+namespace Aula.Server.Features.Messages.DeleteMessage;
 
-internal static class RemoveMessageRateLimitingPolicy
+internal static class DeleteMessageRateLimitingPolicy
 {
-	internal const String Name = nameof(RemoveMessageRateLimitingPolicy);
+	internal const String Name = nameof(DeleteMessageRateLimitingPolicy);
 
 	internal static void Add(IServiceCollection services)
 	{
 		_ = services.AddOptions<RateLimitOptions>(Name)
-			.BindConfiguration($"RateLimiting:{nameof(RemoveMessage)}")
+			.BindConfiguration($"RateLimiting:{nameof(DeleteMessage)}")
 			.ValidateDataAnnotations()
 			.ValidateOnStart();
 

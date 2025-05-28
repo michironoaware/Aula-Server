@@ -1,10 +1,10 @@
-namespace Aula.Server.Features.Messages.RemoveMessage;
+namespace Aula.Server.Features.Messages.DeleteMessage;
 
 internal static class DependencyInjection
 {
 	internal static IServiceCollection AddRemoveMessageRequiredServices(this IServiceCollection services)
 	{
-		RemoveMessageRateLimitingPolicy.Add(services);
+		DeleteMessageRateLimitingPolicy.Add(services);
 		return services;
 	}
 }

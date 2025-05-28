@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Aula.Server.Features.Gateway.Events.MessageRemoved;
 
-internal sealed class MessageRemovedEventDispatcher : INotificationHandler<MessageRemovedEvent>
+internal sealed class MessageRemovedEventDispatcher : INotificationHandler<MessageDeletedEvent>
 {
 	private readonly GatewayManager _gatewayManager;
 	private readonly UserManager _userManager;
@@ -17,7 +17,7 @@ internal sealed class MessageRemovedEventDispatcher : INotificationHandler<Messa
 		_userManager = userManager;
 	}
 
-	public async Task Handle(MessageRemovedEvent notification, CancellationToken cancellationToken)
+	public async Task Handle(MessageDeletedEvent notification, CancellationToken cancellationToken)
 	{
 		var payload = new GatewayPayload<MessageRemovedEventData>
 		{

@@ -15,14 +15,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Messages.RemoveMessage;
+namespace Aula.Server.Features.Messages.DeleteMessage;
 
-internal sealed class RemoveMessageEndpoint : IApiEndpoint
+internal sealed class DeleteMessageEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
 		_ = route.MapDelete("rooms/{roomId}/messages/{messageId}", HandleAsync)
-			.ApplyRateLimiting(RemoveMessageRateLimitingPolicy.Name)
+			.ApplyRateLimiting(DeleteMessageRateLimitingPolicy.Name)
 			.RequireAuthenticatedUser()
 			.RequireConfirmedEmail()
 			.DenyBannedUsers()
@@ -62,7 +62,7 @@ internal sealed class RemoveMessageEndpoint : IApiEndpoint
 		message.IsRemoved = true;
 		message.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 		_ = await dbContext.SaveChangesAsync(ct);
-		await publisher.Publish(new MessageRemovedEvent(message), CancellationToken.None);
+		await publisher.Publish(new MessageDeletedEvent(message), CancellationToken.None);
 
 		return TypedResults.NoContent();
 	}
