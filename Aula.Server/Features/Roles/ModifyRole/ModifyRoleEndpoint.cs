@@ -14,9 +14,9 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Roles.UpdateRole;
+namespace Aula.Server.Features.Roles.ModifyRole;
 
-internal sealed class UpdateRoleEndpoint : IApiEndpoint
+internal sealed class ModifyRoleEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
@@ -30,8 +30,8 @@ internal sealed class UpdateRoleEndpoint : IApiEndpoint
 
 	private static async Task<Results<Ok<RoleData>, ProblemHttpResult, NotFound, InternalServerError>> HandleAsync(
 		Snowflake roleId,
-		UpdateRoleRequestBody body,
-		IValidator<UpdateRoleRequestBody> bodyValidator,
+		ModifyRoleRequestBody body,
+		IValidator<ModifyRoleRequestBody> bodyValidator,
 		AppDbContext dbContext,
 		UserManager userManager,
 		IPublisher publisher,
