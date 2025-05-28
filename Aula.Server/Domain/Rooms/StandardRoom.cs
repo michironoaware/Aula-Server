@@ -3,10 +3,10 @@ using Aula.Server.Shared.Snowflakes;
 
 namespace Aula.Server.Domain.Rooms;
 
-internal class TextRoom : Room
+internal class StandardRoom : Room
 {
 	[SetsRequiredMembers]
-	internal TextRoom(
+	internal StandardRoom(
 		Snowflake id,
 		String name,
 		String description,
@@ -16,6 +16,6 @@ internal class TextRoom : Room
 	{ }
 
 	// EntityFramework constructor
-	private TextRoom()
+	private StandardRoom()
 	{ }
 }

@@ -96,7 +96,7 @@ internal static class EntityMappers
 		_ = roomBuilder.Property(e => e.IsRemoved);
 		_ = roomBuilder.Property(e => e.ConcurrencyStamp);
 		_ = roomBuilder.HasDiscriminator<RoomType>(nameof(Room.Type))
-			.HasValue<TextRoom>(RoomType.Standard);
+			.HasValue<StandardRoom>(RoomType.Standard);
 
 		var roomConnectionBuilder = builder.Entity<RoomConnection>();
 		_ = roomConnectionBuilder.Property(e => e.Id);

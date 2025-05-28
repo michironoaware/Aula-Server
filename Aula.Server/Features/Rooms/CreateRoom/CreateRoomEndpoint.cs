@@ -57,7 +57,7 @@ internal sealed class CreateRoomEndpoint : IApiEndpoint
 		var name = body.Name;
 		var description = body.Description ?? String.Empty;
 		var isEntrance = body.IsEntrance ?? false;
-		var room = new TextRoom(id, name, description, isEntrance, body.BackgroundAudioId);
+		var room = new StandardRoom(id, name, description, isEntrance, body.BackgroundAudioId);
 
 		_ = dbContext.Rooms.Add(room);
 		_ = await dbContext.SaveChangesAsync(ct);
