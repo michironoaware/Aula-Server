@@ -40,6 +40,9 @@ internal sealed class UpdateRolePositionsEndpoint : IApiEndpoint
 	{
 		ct.ThrowIfCancellationRequested();
 
+		body = body
+			.Distinct(RolePositionByIdEqualityComparer.Instance)
+			.ToArray();
 		var validations = new List<ValidationResult>();
 		foreach (var roleBody in body)
 			validations.Add(await bodyRoleValidator.ValidateAsync(roleBody, ct));
