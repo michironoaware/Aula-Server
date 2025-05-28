@@ -60,7 +60,7 @@ internal sealed class DeleteRoleEndpoint : IApiEndpoint
 		role.IsRemoved = true;
 		role.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 		_ = await dbContext.SaveChangesAsync(ct);
-		await publisher.Publish(new RoleRemovedEvent(role), CancellationToken.None);
+		await publisher.Publish(new RoleDeletedEvent(role), CancellationToken.None);
 
 		return TypedResults.NoContent();
 	}
