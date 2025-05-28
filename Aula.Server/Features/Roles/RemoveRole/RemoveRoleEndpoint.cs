@@ -56,6 +56,7 @@ internal sealed class RemoveRoleEndpoint : IApiEndpoint
 			    (higherRole.Position != role.Position || higherRole.Id >= role.Id)))
 			return TypedResults.Problem(ProblemDetailsDefaults.HierarchyProblem);
 
+		role.RoleAssignments.Clear();
 		role.IsRemoved = true;
 		role.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 		_ = await dbContext.SaveChangesAsync(ct);
