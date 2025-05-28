@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Rooms.RemoveRoom;
+namespace Aula.Server.Features.Rooms.DeleteRoom;
 
-internal sealed class RemoveRoomEndpoint : IApiEndpoint
+internal sealed class DeleteRoom : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
