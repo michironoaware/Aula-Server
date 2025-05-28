@@ -15,9 +15,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Roles.UpdateRolePositions;
+namespace Aula.Server.Features.Roles.ModifyRolePositions;
 
-internal sealed class UpdateRolePositionsEndpoint : IApiEndpoint
+internal sealed class ModifyRolePositionsEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
@@ -30,8 +30,8 @@ internal sealed class UpdateRolePositionsEndpoint : IApiEndpoint
 	}
 
 	private static async Task<Results<Ok<IEnumerable<RoleData>>, ProblemHttpResult, InternalServerError>> HandleAsync(
-		[FromBody] UpdateRolePositionsRequestBodyRole[] body,
-		[FromServices] IValidator<UpdateRolePositionsRequestBodyRole> bodyRoleValidator,
+		[FromBody] ModifyRolePositionsRequestBodyRole[] body,
+		[FromServices] IValidator<ModifyRolePositionsRequestBodyRole> bodyRoleValidator,
 		[FromServices] UserManager userManager,
 		[FromServices] AppDbContext dbContext,
 		[FromServices] IPublisher publisher,

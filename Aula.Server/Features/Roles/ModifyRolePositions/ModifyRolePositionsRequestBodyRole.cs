@@ -1,8 +1,8 @@
 using Aula.Server.Shared.Snowflakes;
 
-namespace Aula.Server.Features.Roles.UpdateRolePositions;
+namespace Aula.Server.Features.Roles.ModifyRolePositions;
 
-internal sealed record UpdateRolePositionsRequestBodyRole
+internal sealed record ModifyRolePositionsRequestBodyRole
 {
 	public required Snowflake Id { get; init; }
 
