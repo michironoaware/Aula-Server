@@ -55,7 +55,7 @@ internal sealed class DeleteRoom : IApiEndpoint
 		}
 
 		_ = await dbContext.SaveChangesAsync(ct);
-		await publisher.Publish(new RoomRemovedEvent(room), CancellationToken.None);
+		await publisher.Publish(new RoomDeletedEvent(room), CancellationToken.None);
 		return TypedResults.NoContent();
 	}
 }

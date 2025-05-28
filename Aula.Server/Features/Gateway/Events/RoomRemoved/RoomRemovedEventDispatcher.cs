@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Aula.Server.Features.Gateway.Events.RoomRemoved;
 
-internal sealed class RoomRemovedEventDispatcher : INotificationHandler<RoomRemovedEvent>
+internal sealed class RoomRemovedEventDispatcher : INotificationHandler<RoomDeletedEvent>
 {
 	private readonly GatewayManager _gatewayManager;
 
@@ -14,7 +14,7 @@ internal sealed class RoomRemovedEventDispatcher : INotificationHandler<RoomRemo
 		_gatewayManager = gatewayManager;
 	}
 
-	public async Task Handle(RoomRemovedEvent notification, CancellationToken cancellationToken)
+	public async Task Handle(RoomDeletedEvent notification, CancellationToken cancellationToken)
 	{
 		var payload = new GatewayPayload<RoomData>
 		{
