@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Bots.RemoveBot;
+namespace Aula.Server.Features.Bots.DeleteBot;
 
-internal sealed class RemoveBotEndpoint : IApiEndpoint
+internal sealed class DeleteBotEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{

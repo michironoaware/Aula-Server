@@ -1,5 +1,4 @@
 ﻿using Aula.Server.Domain.Users;
-using Aula.Server.Features.Bots.ResetBot;
 using Aula.Server.Shared.Authorization;
 using Aula.Server.Shared.Endpoints;
 using Aula.Server.Shared.Identity;

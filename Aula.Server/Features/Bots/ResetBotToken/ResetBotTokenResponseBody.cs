@@ -1,4 +1,4 @@
-﻿namespace Aula.Server.Features.Bots.ResetBot;
+﻿namespace Aula.Server.Features.Bots.ResetBotToken;
 
 internal sealed record ResetBotTokenResponseBody
 {
