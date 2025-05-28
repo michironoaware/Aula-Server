@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aula.Server.Features.Identity.Delete;
+namespace Aula.Server.Features.Identity.DeleteIdentity;
 
-internal sealed class DeleteEndpoint : IApiEndpoint
+internal sealed class DeleteIdentityEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
