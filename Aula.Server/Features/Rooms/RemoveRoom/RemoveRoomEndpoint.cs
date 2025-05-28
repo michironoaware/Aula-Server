@@ -43,6 +43,11 @@ internal sealed class RemoveRoomEndpoint : IApiEndpoint
 		room.IsRemoved = true;
 		room.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 
+		var connections = await dbContext.RoomConnections
+			.Where(connection => connection.SourceRoomId == roomId || connection.DestinationRoomId == roomId)
+			.ToArrayAsync(ct);
+		dbContext.RoomConnections.RemoveRange(connections);
+
 		var usersInRoom = await dbContext.Users
 			.Where(user => user.CurrentRoomId == roomId)
 			.ToArrayAsync(ct);
