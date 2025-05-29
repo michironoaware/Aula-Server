@@ -70,6 +70,21 @@ internal enum EventType
 	/// </summary>
 	BanLifted,
 
+	/// <summary>
+	///     A role has been created.
+	/// </summary>
+	RoleCreated,
+
+	/// <summary>
+	///     A role has been updated.
+	/// </summary>
+	RoleUpdated,
+
+	/// <summary>
+	///     A role has been deleted.
+	/// </summary>
+	RoleDeleted,
+
 	#endregion
 
 	#region Receive
