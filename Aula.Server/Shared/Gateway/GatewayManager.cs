@@ -49,6 +49,12 @@ internal sealed class GatewayManager
 	}
 
 	internal async Task DispatchEventAsync<TPayloadData>(
+		GatewayPayload<TPayloadData> payload)
+	{
+		await DispatchEventAsync(payload, 0);
+	}
+
+	internal async Task DispatchEventAsync<TPayloadData>(
 		GatewayPayload<TPayloadData> payload,
 		Intents requiredIntents)
 	{
