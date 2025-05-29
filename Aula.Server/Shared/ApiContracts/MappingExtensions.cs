@@ -1,5 +1,6 @@
 using Aula.Server.Domain.AccessControl;
 using Aula.Server.Domain.Bans;
+using Aula.Server.Domain.Files;
 using Aula.Server.Domain.Messages;
 using Aula.Server.Domain.Rooms;
 using Aula.Server.Domain.Users;
@@ -76,5 +77,10 @@ internal static class MappingExtensions
 		Position = role.Position,
 		IsGlobal = role.IsGlobal,
 		CreationDate = role.CreationDate,
+	};
+
+	internal static FileData ToFileData(this File file) => new()
+	{
+		Id = file.Id, Name = file.Name, ContentType = file.ContentType, Size = file.Size,
 	};
 }
