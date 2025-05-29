@@ -25,6 +25,6 @@ internal sealed class UserPresenceUpdatedEventDispatcher : INotificationHandler<
 			},
 		};
 
-		await _gatewayManager.DispatchEventAsync(payload, Intents.Users);
+		await _gatewayManager.DispatchEventAsync(payload);
 	}
 }

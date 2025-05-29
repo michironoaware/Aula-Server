@@ -35,9 +35,6 @@ internal sealed class UserUpdatedEventDispatcher : INotificationHandler<UserUpda
 
 		foreach (var session in _gatewayManager.Sessions.Values)
 		{
-			if (!session.Intents.HasFlag(Intents.Users))
-				continue;
-
 			_ = session.QueueEventAsync(payload, cancellationToken);
 		}
 

@@ -27,6 +27,6 @@ internal sealed class UserCurrentRoomUpdatedEventDispatcher : INotificationHandl
 			},
 		};
 
-		await _gatewayManager.DispatchEventAsync(payload, Intents.Users);
+		await _gatewayManager.DispatchEventAsync(payload);
 	}
 }

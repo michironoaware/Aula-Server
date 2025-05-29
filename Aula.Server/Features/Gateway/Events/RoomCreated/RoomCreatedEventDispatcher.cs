@@ -23,6 +23,6 @@ internal sealed class RoomCreatedEventDispatcher : INotificationHandler<RoomCrea
 			Data = notification.Room.ToRoomData(),
 		};
 
-		await _gatewayManager.DispatchEventAsync(payload, Intents.Rooms);
+		await _gatewayManager.DispatchEventAsync(payload);
 	}
 }
