@@ -4,14 +4,14 @@ using Aula.Server.Shared.Gateway;
 using Aula.Server.Shared.Identity;
 using MediatR;
 
-namespace Aula.Server.Features.Gateway.Events.MessageRemoved;
+namespace Aula.Server.Features.Gateway.Events.MessageDeleted;
 
-internal sealed class MessageRemovedEventDispatcher : INotificationHandler<MessageDeletedEvent>
+internal sealed class MessageDeletedEventDispatcher : INotificationHandler<MessageDeletedEvent>
 {
 	private readonly GatewayManager _gatewayManager;
 	private readonly UserManager _userManager;
 
-	public MessageRemovedEventDispatcher(GatewayManager gatewayManager, UserManager userManager)
+	public MessageDeletedEventDispatcher(GatewayManager gatewayManager, UserManager userManager)
 	{
 		_gatewayManager = gatewayManager;
 		_userManager = userManager;
@@ -19,11 +19,11 @@ internal sealed class MessageRemovedEventDispatcher : INotificationHandler<Messa
 
 	public async Task Handle(MessageDeletedEvent notification, CancellationToken cancellationToken)
 	{
-		var payload = new GatewayPayload<MessageRemovedEventData>
+		var payload = new GatewayPayload<MessageDeletedEventData>
 		{
 			Operation = OperationType.Dispatch,
 			Event = EventType.MessageDeleted,
-			Data = new MessageRemovedEventData { Id = notification.Message.Id },
+			Data = new MessageDeletedEventData { Id = notification.Message.Id },
 		};
 
 		await _gatewayManager.DispatchEventAsync(payload, async (user, intents, state)

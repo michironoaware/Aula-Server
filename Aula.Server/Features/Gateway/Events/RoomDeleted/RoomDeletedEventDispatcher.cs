@@ -3,13 +3,13 @@ using Aula.Server.Shared.ApiContracts;
 using Aula.Server.Shared.Gateway;
 using MediatR;
 
-namespace Aula.Server.Features.Gateway.Events.RoomRemoved;
+namespace Aula.Server.Features.Gateway.Events.RoomDeleted;
 
-internal sealed class RoomRemovedEventDispatcher : INotificationHandler<RoomDeletedEvent>
+internal sealed class RoomDeletedEventDispatcher : INotificationHandler<RoomDeletedEvent>
 {
 	private readonly GatewayManager _gatewayManager;
 
-	public RoomRemovedEventDispatcher(GatewayManager gatewayManager)
+	public RoomDeletedEventDispatcher(GatewayManager gatewayManager)
 	{
 		_gatewayManager = gatewayManager;
 	}
