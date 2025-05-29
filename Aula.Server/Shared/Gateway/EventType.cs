@@ -85,6 +85,11 @@ internal enum EventType
 	/// </summary>
 	RoleDeleted,
 
+	/// <summary>
+	///     A file has been created.
+	/// </summary>
+	FileCreated,
+
 	#endregion
 
 	#region Receive
