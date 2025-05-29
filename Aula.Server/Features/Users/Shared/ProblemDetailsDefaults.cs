@@ -95,4 +95,11 @@ internal static class ProblemDetailsDefaults
 		Detail = "One or more of the specified roles does not exist.",
 		Status = StatusCodes.Status400BadRequest,
 	};
+
+	internal static ProblemDetails RoleAssignmentHierarchyProblem { get; } = new()
+	{
+		Title = "Missing permissions",
+		Detail = "The role to assign belongs to a higher hierarchy.",
+		Status = StatusCodes.Status400BadRequest,
+	};
 }
