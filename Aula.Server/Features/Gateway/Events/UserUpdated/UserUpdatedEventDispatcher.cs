@@ -14,30 +14,15 @@ internal sealed class UserUpdatedEventDispatcher : INotificationHandler<UserUpda
 		_gatewayManager = gatewayManager;
 	}
 
-	public Task Handle(UserUpdatedEvent notification, CancellationToken cancellationToken)
+	public async Task Handle(UserUpdatedEvent notification, CancellationToken cancellationToken)
 	{
-		var user = notification.User;
 		var payload = new GatewayPayload<UserData>
 		{
 			Operation = OperationType.Dispatch,
 			Event = EventType.UserUpdated,
-			Data = new UserData
-			{
-				Id = user.Id,
-				DisplayName = user.DisplayName,
-				Description = user.Description,
-				Type = user.Type,
-				Presence = user.Presence,
-				RoleIds = user.RoleAssignments.Select(ra => ra.Role.Id),
-				CurrentRoomId = user.CurrentRoomId,
-			},
+			Data = notification.User.ToUserData(),
 		};
 
-		foreach (var session in _gatewayManager.Sessions.Values)
-		{
-			_ = session.QueueEventAsync(payload, cancellationToken);
-		}
-
-		return Task.CompletedTask;
+		await _gatewayManager.DispatchEventAsync(payload);
 	}
 }
