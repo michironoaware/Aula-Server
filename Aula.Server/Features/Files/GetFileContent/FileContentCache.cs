@@ -7,7 +7,7 @@ namespace Aula.Server.Features.Files.GetFileContent;
 
 internal sealed class FileContentCache
 {
-	private static readonly TimeSpan s_cacheEntrySlidingExpiration = TimeSpan.FromMinutes(30);
+	private static readonly TimeSpan s_cacheEntrySlidingExpiration = TimeSpan.FromMinutes(15);
 	private readonly IMemoryCache _cache;
 	private readonly AppDbContext _dbContext;
 
