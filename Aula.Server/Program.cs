@@ -27,11 +27,15 @@ using Aula.Server.Shared.Tokens;
 using FluentValidation;
 using MartinCostello.OpenApi;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Scalar.AspNetCore;
 
 var startTimestamp = Stopwatch.GetTimestamp();
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("configuration.json", false, true);
+builder.Configuration.AddJsonFile("../configuration.json", false, true);
 
 builder.Services
 	.AddCors(options =>
