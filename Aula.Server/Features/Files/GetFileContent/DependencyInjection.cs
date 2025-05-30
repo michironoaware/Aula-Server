@@ -4,7 +4,7 @@ internal static class DependencyInjection
 {
 	internal static IServiceCollection AddFileContentRequiredServices(this IServiceCollection services)
 	{
-		_ = services.AddSingleton<FileContentCache>();
+		services.TryAddScoped<FileContentCache>();
 		return services;
 	}
 }
