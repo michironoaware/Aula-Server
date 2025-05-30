@@ -97,7 +97,7 @@ if (app.Environment.IsDevelopment())
 {
 	var docsRoute = app.MapGroup("docs");
 	_ = docsRoute.MapOpenApi();
-	_ = docsRoute.MapScalarApiReference("/scalar/{documentName}", options =>
+	_ = docsRoute.MapScalarApiReference("/scalar/", options =>
 	{
 		options.WithTitle($"{nameof(Aula)} API {{documentName}}")
 			.WithTheme(ScalarTheme.Alternate)
