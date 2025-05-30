@@ -12,7 +12,7 @@ internal static class DependencyInjection
 			.ValidateDataAnnotations()
 			.ValidateOnStart();
 
-		services.TryAddSingleton<GatewayManager>();
+		services.TryAddScoped<GatewayManager>();
 		_ = services.AddHostedService<ExpiredSessionsCleanerService>();
 
 		_ = services.AddWebSockets(options =>
