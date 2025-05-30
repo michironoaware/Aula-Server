@@ -2,14 +2,19 @@
 
 internal sealed partial class ExpiredSessionsCleanerService : BackgroundService
 {
+	private readonly IServiceScopeFactory _serviceScopeFactory;
 	private readonly TimeSpan _cleanupInterval = TimeSpan.FromMinutes(5);
-	private readonly GatewayManager _gatewayManager;
 	private readonly ILogger<ExpiredSessionsCleanerService> _logger;
 
-	public ExpiredSessionsCleanerService(GatewayManager gatewayManager, ILogger<ExpiredSessionsCleanerService> logger)
+	public ExpiredSessionsCleanerService(
+		IServiceScopeFactory serviceScopeFactory,
+		ILogger<ExpiredSessionsCleanerService> logger)
 	{
-		_gatewayManager = gatewayManager;
+		_serviceScopeFactory = serviceScopeFactory;
 		_logger = logger;
+
+		using var scope = _serviceScopeFactory.CreateScope();
+		var gatewayManager = scope.ServiceProvider.GetRequiredService<GatewayManager>();
 		_cleanupInterval = gatewayManager.ExpirePeriod < _cleanupInterval
 			? gatewayManager.ExpirePeriod
 			: _cleanupInterval;
@@ -19,8 +24,10 @@ internal sealed partial class ExpiredSessionsCleanerService : BackgroundService
 	{
 		while (!stoppingToken.IsCancellationRequested)
 		{
+			using var scope = _serviceScopeFactory.CreateScope();
+			var gatewayManager = scope.ServiceProvider.GetRequiredService<GatewayManager>();
 			await Task.Delay(_cleanupInterval, stoppingToken);
-			LogCleanup(_logger, _gatewayManager.ClearExpiredSessions());
+			LogCleanup(_logger, gatewayManager.ClearExpiredSessions());
 		}
 	}
 
