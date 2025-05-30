@@ -13,6 +13,13 @@ internal static class ProblemDetailsDefaults
 		Status = StatusCodes.Status400BadRequest,
 	};
 
+	internal static ProblemDetails InvalidUserName { get; } = new()
+	{
+		Title = "Login problem",
+		Detail = "The username provided is invalid.",
+		Status = StatusCodes.Status401Unauthorized,
+	};
+
 	internal static ProblemDetails IncorrectPassword { get; } = new()
 	{
 		Title = "Login problem",

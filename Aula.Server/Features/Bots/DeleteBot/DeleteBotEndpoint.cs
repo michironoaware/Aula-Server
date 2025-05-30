@@ -25,7 +25,7 @@ internal sealed class DeleteBotEndpoint : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<NoContent, InternalServerError>> HandleAsync(
 		[FromRoute] Snowflake userId,
 		[FromServices] AppDbContext dbContext,
 		CancellationToken ct)

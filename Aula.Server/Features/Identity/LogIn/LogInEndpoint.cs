@@ -34,7 +34,7 @@ internal sealed class LogInEndpoint : IApiEndpoint
 
 		var user = await userManager.FindByUserNameAsync(body.UserName);
 		if (user is null)
-			return TypedResults.Problem(ProblemDetailsDefaults.UserDoesNotExist);
+			return TypedResults.Problem(ProblemDetailsDefaults.InvalidUserName);
 
 		var isPasswordCorrect = userManager.CheckPassword(user, body.Password);
 		if (!isPasswordCorrect)

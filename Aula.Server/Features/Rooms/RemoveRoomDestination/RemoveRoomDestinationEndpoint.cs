@@ -26,7 +26,7 @@ internal sealed class RemoveRoomDestinationEndpoint : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, NotFound, ProblemHttpResult>> HandleAsync(
+	private static async Task<Results<NoContent, NotFound>> HandleAsync(
 		[FromRoute] Snowflake sourceRoomId,
 		[FromRoute] Snowflake targetRoomId,
 		[FromServices] AppDbContext dbContext,

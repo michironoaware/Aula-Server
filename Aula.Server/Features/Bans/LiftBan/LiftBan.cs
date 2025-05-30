@@ -26,7 +26,7 @@ internal sealed class LiftBan : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, NotFound, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<NoContent, NotFound, InternalServerError>> HandleAsync(
 		[FromRoute] Snowflake banId,
 		[FromServices] AppDbContext dbContext,
 		[FromServices] IPublisher publisher,

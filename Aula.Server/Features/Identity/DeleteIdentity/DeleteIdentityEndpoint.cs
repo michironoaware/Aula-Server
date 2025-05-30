@@ -39,7 +39,7 @@ internal sealed class DeleteIdentityEndpoint : IApiEndpoint
 			.Where(u => u.UserName == body.UserName && !u.IsDeleted)
 			.FirstOrDefaultAsync();
 		if (user is null)
-			return TypedResults.Problem(ProblemDetailsDefaults.UserDoesNotExist);
+			return TypedResults.Problem(ProblemDetailsDefaults.InvalidUserName);
 
 		var isPasswordCorrect = userManager.CheckPassword(user, body.Password);
 		if (!isPasswordCorrect)

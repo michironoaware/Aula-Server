@@ -59,7 +59,7 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Invalid target",
 		Detail = "The specified user does not exist.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status404NotFound,
 	};
 
 	internal static ProblemDetails TargetIsSelf { get; } = new()

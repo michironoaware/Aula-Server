@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aula.Server.Features.Rooms.DeleteRoom;
 
-internal sealed class DeleteRoom : IApiEndpoint
+internal sealed class DeleteRoomEndpoint : IApiEndpoint
 {
 	public void Build(IEndpointRouteBuilder route)
 	{
