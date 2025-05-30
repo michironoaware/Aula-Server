@@ -127,6 +127,7 @@ catch (AggregateException e)
 
 	if (e.InnerExceptions.Any(innerE => innerE is not OptionsValidationException))
 		throw;
+	return;
 }
 
 var elapsedTime = Stopwatch.GetElapsedTime(startTimestamp);
