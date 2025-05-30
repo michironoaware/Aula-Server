@@ -34,8 +34,8 @@ using Scalar.AspNetCore;
 var startTimestamp = Stopwatch.GetTimestamp();
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("configuration.json", false, true);
-builder.Configuration.AddJsonFile("../configuration.json", false, true);
+builder.Configuration.AddJsonFile("configuration.json", true, true);
+builder.Configuration.AddJsonFile("../configuration.json", true, true);
 
 builder.Services
 	.AddCors(options =>
