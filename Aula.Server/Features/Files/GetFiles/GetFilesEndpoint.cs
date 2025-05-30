@@ -15,8 +15,8 @@ namespace Aula.Server.Features.Files.GetFiles;
 
 internal sealed class GetFilesEndpoint : IApiEndpoint
 {
-	internal const String AfterQueryParameter = "after";
-	internal const String CountQueryParameter = "count";
+	internal const String AfterQueryParamName = "after";
+	internal const String CountQueryParamName = "count";
 	internal const Int32 MinimumMessageCount = 1;
 	internal const Int32 MaximumMessageCount = 100;
 	internal const Int32 DefaultMessageCount = 10;
@@ -31,8 +31,8 @@ internal sealed class GetFilesEndpoint : IApiEndpoint
 	}
 
 	private static async Task<Results<Ok<IEnumerable<FileData>>, ProblemHttpResult>> HandleAsync(
-		[FromQuery(Name = AfterQueryParameter)] Snowflake? afterFileId,
-		[FromQuery(Name = CountQueryParameter)] Int32? specifiedCount,
+		[FromQuery(Name = AfterQueryParamName)] Snowflake? afterFileId,
+		[FromQuery(Name = CountQueryParamName)] Int32? specifiedCount,
 		[FromServices] AppDbContext dbContext,
 		CancellationToken ct)
 	{

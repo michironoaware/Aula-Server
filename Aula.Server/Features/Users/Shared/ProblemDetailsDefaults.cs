@@ -6,10 +6,10 @@ namespace Aula.Server.Features.Users.Shared;
 
 internal static class ProblemDetailsDefaults
 {
-	internal static ProblemDetails RoomDoesNotExist { get; } = new()
+	internal static ProblemDetails SpecifiedCurrentRoomDoesNotExist { get; } = new()
 	{
 		Title = "Invalid room",
-		Detail = "The specified room does not exist.",
+		Detail = "Cannot update the current room to a room that does not exist.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
@@ -23,15 +23,14 @@ internal static class ProblemDetailsDefaults
 	internal static ProblemDetails NoRoomConnection { get; } = new()
 	{
 		Title = "Room connection required",
-		Detail = "The current room is not connected to the specified destination room.",
+		Detail = "The current room has no relationship with the specified destination room.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
 	internal static ProblemDetails InvalidUserCount { get; } = new()
 	{
-		Title = "Invalid user count",
-		Detail =
-			$"The user count must be between {GetUsersEndpoint.MinimumUserCount} and {GetUsersEndpoint.MaximumUserCount}.",
+		Title = $"Invalid '{GetUsersEndpoint.CountQueryParamName}' query parameter",
+		Detail = $"Must be between {GetUsersEndpoint.MinimumUserCount} and {GetUsersEndpoint.MaximumUserCount}.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
@@ -65,7 +64,7 @@ internal static class ProblemDetailsDefaults
 
 	internal static ProblemDetails TargetIsSelf { get; } = new()
 	{
-		Title = "Invalid target", Detail = "You cannot target yourself.", Status = StatusCodes.Status400BadRequest,
+		Title = "Invalid target", Detail = "You cannot target yourself.", Status = StatusCodes.Status403Forbidden,
 	};
 
 	internal static ProblemDetails TargetIsAdministrator { get; } = new()
@@ -79,14 +78,14 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Missing permissions",
 		Detail = "Insufficient permissions to modify the target's current room.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 
 	internal static ProblemDetails InsufficientPermissionsToModifyRoles { get; } = new()
 	{
 		Title = "Missing permissions",
 		Detail = "Insufficient permissions to modify the target's roles.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 
 	internal static ProblemDetails OneOrMoreRolesDoNotExist { get; } = new()
@@ -100,6 +99,6 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Missing permissions",
 		Detail = "The role to assign belongs to a higher hierarchy.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 }

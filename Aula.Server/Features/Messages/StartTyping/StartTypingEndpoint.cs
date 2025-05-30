@@ -28,7 +28,7 @@ internal sealed class StartTypingEndpoint : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<NoContent, NotFound, ProblemHttpResult, InternalServerError>> HandleAsync(
 		[FromRoute] Snowflake roomId,
 		[FromServices] UserManager userManager,
 		[FromServices] AppDbContext dbContext,
@@ -47,7 +47,7 @@ internal sealed class StartTypingEndpoint : IApiEndpoint
 			.Select(r => new { r.Type })
 			.FirstOrDefaultAsync(ct);
 		if (room is null)
-			return TypedResults.Problem(ProblemDetailsDefaults.RoomDoesNotExist);
+			return TypedResults.NotFound();
 
 		if (room.Type != RoomType.Standard)
 			return TypedResults.Problem(ProblemDetailsDefaults.InvalidRoomType);

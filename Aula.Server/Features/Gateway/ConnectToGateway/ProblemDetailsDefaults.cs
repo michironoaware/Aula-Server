@@ -14,8 +14,8 @@ internal static class ProblemDetailsDefaults
 
 	internal static ProblemDetails InvalidSession { get; } = new()
 	{
-		Title = "Invalid session id.",
-		Detail = "The session does not exist, is active, or has expired, or the current user does not own it",
+		Title = "Invalid session ID.",
+		Detail = "The session does not exist, is active, has expired, or the current user does not own it",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
@@ -23,6 +23,6 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Missing permissions.",
 		Detail = "Only users with administrator permissions can provide and set a presence.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 }

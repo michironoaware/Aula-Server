@@ -7,13 +7,6 @@ namespace Aula.Server.Features.Messages.Shared;
 
 internal static class ProblemDetailsDefaults
 {
-	internal static ProblemDetails RoomDoesNotExist { get; } = new()
-	{
-		Title = "Invalid room",
-		Detail = "The specified room does not exist",
-		Status = StatusCodes.Status400BadRequest,
-	};
-
 	internal static ProblemDetails InvalidRoomType { get; } = new()
 	{
 		Title = "Invalid room",
@@ -44,23 +37,30 @@ internal static class ProblemDetailsDefaults
 
 	internal static ProblemDetails InvalidMessageCount { get; } = new()
 	{
-		Title = "Invalid message count.",
+		Title = $"Invalid '{GetMessagesEndpoint.CountQueryParamName}' query parameter.",
 		Detail =
-			$"The message count must be between {GetMessagesEndpoint.MinimumMessageCount} and {GetMessagesEndpoint.MaximumMessageCount}.",
+			$"Must be between {GetMessagesEndpoint.MinimumMessageCount} and {GetMessagesEndpoint.MaximumMessageCount}.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
 	internal static ProblemDetails InvalidBeforeMessage { get; } = new()
 	{
-		Title = $"Invalid '{GetMessagesEndpoint.BeforeQueryParameter}' query parameter.",
+		Title = $"Invalid '{GetMessagesEndpoint.BeforeQueryParamName}' query parameter.",
 		Detail = "A message with the specified ID was not found.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
 	internal static ProblemDetails InvalidAfterMessage { get; } = new()
 	{
-		Title = $"Invalid '{GetMessagesEndpoint.AfterQueryParameter}' query parameter.",
+		Title = $"Invalid '{GetMessagesEndpoint.AfterQueryParamName}' query parameter.",
 		Detail = "A message with the specified ID was not found.",
 		Status = StatusCodes.Status400BadRequest,
+	};
+
+	internal static ProblemDetails CannotDeleteMessageSentByOtherUser { get; } = new()
+	{
+		Title = "Missing permissions",
+		Detail = "Message management permissions are required to delete a message sent by another user.",
+		Status = StatusCodes.Status403Forbidden,
 	};
 }

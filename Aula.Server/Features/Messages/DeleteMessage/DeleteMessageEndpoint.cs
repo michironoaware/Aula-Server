@@ -29,7 +29,7 @@ internal sealed class DeleteMessageEndpoint : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<NoContent, ForbidHttpResult, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<NoContent, NotFound, ProblemHttpResult, InternalServerError>> HandleAsync(
 		[FromRoute] Snowflake roomId,
 		[FromRoute] Snowflake messageId,
 		[FromServices] AppDbContext dbContext,
@@ -42,7 +42,7 @@ internal sealed class DeleteMessageEndpoint : IApiEndpoint
 			.Where(r => r.Id == roomId && !r.IsRemoved)
 			.AnyAsync(ct);
 		if (!roomExists)
-			return TypedResults.Problem(ProblemDetailsDefaults.RoomDoesNotExist);
+			return TypedResults.NotFound();
 
 		var message = await dbContext.Messages
 			.Where(m => m.Id == messageId && !m.IsRemoved)
@@ -57,7 +57,7 @@ internal sealed class DeleteMessageEndpoint : IApiEndpoint
 		if (message.AuthorId != user.Id &&
 		    !(await userManager.HasPermissionAsync(user, Permissions.Administrator) ||
 			    await userManager.HasPermissionAsync(user, Permissions.ManageMessages)))
-			return TypedResults.Forbid();
+			return TypedResults.Problem(ProblemDetailsDefaults.CannotDeleteMessageSentByOtherUser);
 
 		message.IsRemoved = true;
 		message.ConcurrencyStamp = Guid.NewGuid().ToString("N");

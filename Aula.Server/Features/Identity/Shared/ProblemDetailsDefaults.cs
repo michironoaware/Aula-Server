@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aula.Server.Features.Identity.ConfirmEmail;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aula.Server.Features.Identity.Shared;
@@ -16,34 +17,34 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Login problem",
 		Detail = "The password provided is incorrect.",
-		Status = StatusCodes.Status403Forbidden,
+		Status = StatusCodes.Status401Unauthorized,
 	};
 
 	internal static ProblemDetails UserIsLockedOut { get; } = new()
 	{
 		Title = "Login problem",
 		Detail = "The account is temporarily locked out due to multiple unsuccessful login attempts.",
-		Status = StatusCodes.Status403Forbidden,
+		Status = StatusCodes.Status401Unauthorized,
 	};
 
 	internal static ProblemDetails EmailNotConfirmed { get; } = new()
 	{
 		Title = "Login problem",
 		Detail = "The email must be confirmed to login.",
-		Status = StatusCodes.Status403Forbidden,
+		Status = StatusCodes.Status401Unauthorized,
 	};
 
 	internal static ProblemDetails InvalidResetPasswordToken { get; } = new()
 	{
 		Title = "Invalid reset password code",
 		Detail = "The reset password code is invalid.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status401Unauthorized,
 	};
 
 	internal static ProblemDetails InvalidBase64UrlEmail { get; } = new()
 	{
-		Title = "Invalid email",
+		Title = $"Invalid '{ConfirmEmailEndpoint.EmailQueryParamName}' query parameter",
 		Detail = "The email must be encoded and sent in base64url.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status401Unauthorized,
 	};
 }

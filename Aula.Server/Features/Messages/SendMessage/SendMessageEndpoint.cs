@@ -33,7 +33,8 @@ internal sealed class SendMessageEndpoint : IApiEndpoint
 			.HasApiVersion(1);
 	}
 
-	private static async Task<Results<Created<MessageData>, ProblemHttpResult, InternalServerError>> HandleAsync(
+	private static async Task<Results<Created<MessageData>, NotFound, ProblemHttpResult, InternalServerError>>
+		HandleAsync(
 		[FromRoute] Snowflake roomId,
 		[FromBody] SendMessageRequestBody body,
 		[FromServices] IValidator<SendMessageRequestBody> bodyValidator,
@@ -56,7 +57,7 @@ internal sealed class SendMessageEndpoint : IApiEndpoint
 			.Select(r => new { r.Type })
 			.FirstOrDefaultAsync(ct);
 		if (room is null)
-			return TypedResults.Problem(ProblemDetailsDefaults.RoomDoesNotExist);
+			return TypedResults.NotFound();
 		if (room.Type is not RoomType.Standard)
 			return TypedResults.Problem(ProblemDetailsDefaults.InvalidRoomType);
 

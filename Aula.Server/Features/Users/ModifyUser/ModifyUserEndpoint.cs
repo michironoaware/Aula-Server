@@ -99,7 +99,7 @@ internal sealed class ModifyUserEndpoint : IApiEndpoint
 				.Select(r => new { r.IsEntrance })
 				.FirstOrDefaultAsync(ct);
 			if (room is null)
-				return TypedResults.Problem(ProblemDetailsDefaults.RoomDoesNotExist);
+				return TypedResults.Problem(ProblemDetailsDefaults.SpecifiedCurrentRoomDoesNotExist);
 
 			if (!await userManager.HasPermissionAsync(user, Permissions.Administrator))
 			{

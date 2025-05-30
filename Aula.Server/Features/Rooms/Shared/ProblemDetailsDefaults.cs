@@ -8,9 +8,8 @@ internal static class ProblemDetailsDefaults
 {
 	internal static ProblemDetails InvalidRoomCount { get; } = new()
 	{
-		Title = "Invalid room count",
-		Detail =
-			$"The room count must be between {GetRoomsEndpoint.MinimumRoomCount} and {GetRoomsEndpoint.MaximumRoomCount}.",
+		Title = $"Invalid '{GetRoomsEndpoint.CountQueryParamName}' query parameter",
+		Detail = $"Must be between {GetRoomsEndpoint.MinimumRoomCount} and {GetRoomsEndpoint.MaximumRoomCount}.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 

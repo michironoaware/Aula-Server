@@ -17,9 +17,9 @@ namespace Aula.Server.Features.Messages.GetMessages;
 
 internal sealed class GetMessagesEndpoint : IApiEndpoint
 {
-	internal const String BeforeQueryParameter = "before";
-	internal const String AfterQueryParameter = "after";
-	internal const String CountQueryParameter = "count";
+	internal const String BeforeQueryParamName = "before";
+	internal const String AfterQueryParamName = "after";
+	internal const String CountQueryParamName = "count";
 	internal const Int32 MinimumMessageCount = 1;
 	internal const Int32 MaximumMessageCount = 100;
 	internal const Int32 DefaultMessageCount = 10;
@@ -37,9 +37,9 @@ internal sealed class GetMessagesEndpoint : IApiEndpoint
 	private static async Task<Results<Ok<IEnumerable<MessageData>>, NotFound, ProblemHttpResult, InternalServerError>>
 		HandleAsync(
 			[FromRoute] Snowflake roomId,
-			[FromQuery(Name = BeforeQueryParameter)] Snowflake? beforeMessageId,
-			[FromQuery(Name = AfterQueryParameter)] Snowflake? afterMessageId,
-			[FromQuery(Name = CountQueryParameter)] Int32? specifiedCount,
+			[FromQuery(Name = BeforeQueryParamName)] Snowflake? beforeMessageId,
+			[FromQuery(Name = AfterQueryParamName)] Snowflake? afterMessageId,
+			[FromQuery(Name = CountQueryParamName)] Int32? specifiedCount,
 			[FromServices] AppDbContext dbContext,
 			[FromServices] UserManager userManager,
 			HttpContext httpContext,

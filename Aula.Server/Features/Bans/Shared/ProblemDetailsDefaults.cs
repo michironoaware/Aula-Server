@@ -8,9 +8,8 @@ internal static class ProblemDetailsDefaults
 {
 	internal static ProblemDetails InvalidBanCount { get; } = new()
 	{
-		Title = "Invalid ban count.",
-		Detail =
-			$"The ban count must be between {GetBansEndpoint.MinimumBanCount} and {GetBansEndpoint.MaximumBanCount}.",
+		Title = $"Invalid '{GetBansEndpoint.CountQueryParamName}' query parameter.",
+		Detail = $"Must be between {GetBansEndpoint.MinimumBanCount} and {GetBansEndpoint.MaximumBanCount}.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 

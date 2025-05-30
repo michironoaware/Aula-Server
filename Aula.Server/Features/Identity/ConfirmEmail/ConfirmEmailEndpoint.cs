@@ -15,8 +15,8 @@ namespace Aula.Server.Features.Identity.ConfirmEmail;
 
 internal sealed class ConfirmEmailEndpoint : IApiEndpoint
 {
-	internal const String EmailQueryParameter = "email";
-	internal const String TokenQueryParameter = "token";
+	internal const String EmailQueryParamName = "email";
+	internal const String TokenQueryParamName = "token";
 
 	public void Build(IEndpointRouteBuilder route)
 	{
@@ -25,8 +25,8 @@ internal sealed class ConfirmEmailEndpoint : IApiEndpoint
 	}
 
 	private static async Task<Results<NoContent, RedirectHttpResult, ProblemHttpResult>> HandleAsync(
-		[FromQuery(Name = EmailQueryParameter)] String email,
-		[FromQuery(Name = TokenQueryParameter)] String? token,
+		[FromQuery(Name = EmailQueryParamName)] String email,
+		[FromQuery(Name = TokenQueryParamName)] String? token,
 		[FromServices] UserManager userManager,
 		[FromServices] ConfirmEmailEmailSender confirmEmailEmailSender,
 		[FromServices] IOptions<IdentityFeatureOptions> featureOptions)

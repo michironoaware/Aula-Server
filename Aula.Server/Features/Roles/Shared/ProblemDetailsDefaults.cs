@@ -10,21 +10,20 @@ internal static class ProblemDetailsDefaults
 	{
 		Title = "Missing permissions",
 		Detail = "Cannot set permissions not held.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 
 	internal static ProblemDetails HierarchyProblem { get; } = new()
 	{
 		Title = "Missing permissions",
 		Detail = "The role to be modified belongs to a higher hierarchy.",
-		Status = StatusCodes.Status400BadRequest,
+		Status = StatusCodes.Status403Forbidden,
 	};
 
 	internal static ProblemDetails InvalidRoleCount { get; } = new()
 	{
-		Title = "Invalid role count",
-		Detail =
-			$"The role count must be between {GetRolesEndpoint.MinimumRoleCount} and {GetRolesEndpoint.MaximumRoleCount}.",
+		Title = $"Invalid '{GetRolesEndpoint.CountQueryParamName}' query parameter",
+		Detail = $"Must be between {GetRolesEndpoint.MinimumRoleCount} and {GetRolesEndpoint.MaximumRoleCount}.",
 		Status = StatusCodes.Status400BadRequest,
 	};
 
