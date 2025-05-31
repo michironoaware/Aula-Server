@@ -1,2 +1,8 @@
+**/bin/
+**/obj/
+**/out/
+
+Dockerfile*
+**/*.md
 devcert.pfx
 *.db
