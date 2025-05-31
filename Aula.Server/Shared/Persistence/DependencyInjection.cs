@@ -1,4 +1,5 @@
-﻿using Aula.Server.Domain.AccessControl;
+﻿using System.ComponentModel.DataAnnotations;
+using Aula.Server.Domain.AccessControl;
 using Aula.Server.Shared.Snowflakes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -10,14 +11,31 @@ internal static class DependencyInjection
 {
 	internal static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
 	{
+		_ = services.AddOptions<PersistenceOptions>()
+			.BindConfiguration(PersistenceOptions.SectionName)
+			.ValidateDataAnnotations()
+			.ValidateOnStart();
+
+		var settings = new PersistenceOptions();
+		configuration.GetSection(PersistenceOptions.SectionName).Bind(settings);
+		Validator.ValidateObject(settings, new ValidationContext(settings));
+
 		_ = services.AddDbContext<AppDbContext>((serviceProvider, builder) =>
 		{
 			_ = builder
 				.UseLazyLoadingProxies()
 				.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-				.UseSqlite(configuration.GetConnectionString("Default"),
-					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery))
 				.SeedGlobalRole(serviceProvider);
+
+			_ = settings.Provider switch
+			{
+				PersistenceProvider.Sqlite => builder.UseSqlite(settings.ConnectionString,
+					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery)),
+				PersistenceProvider.Postgres => builder.UseNpgsql(settings.ConnectionString,
+					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery)
+						.SetPostgresVersion(settings.PostgresVersionMajor, settings.PostgresVersionMinor)),
+				_ => throw new NotImplementedException(),
+			};
 		});
 
 		return services;
