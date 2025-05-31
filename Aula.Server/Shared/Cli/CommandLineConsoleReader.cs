@@ -32,7 +32,7 @@ internal sealed class CommandLineConsoleReader : BackgroundService
 			{
 				// We catch the exception and do not rethrow it, as that would stop the process
 				// and prevent the commandline service from processing further inputs.
-				_logger.CommandFailed(ex);
+				_logger.CommandFailed(ex, ex.GetType().ToString(), ex.Message, ex.StackTrace);
 			}
 		}
 	}
