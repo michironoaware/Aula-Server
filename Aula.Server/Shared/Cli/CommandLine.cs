@@ -90,11 +90,9 @@ internal sealed partial class CommandLine
 			cancellationToken.ThrowIfCancellationRequested();
 			var segmentStart = inputSegments.Current.Start.Value;
 			var segmentLength = inputSegments.Current.End.Value - segmentStart;
-
-			if (segmentLength == 0)
-				continue;
-
 			var segment = input.Span.Slice(segmentStart, segmentLength);
+			if (segment.IsWhiteSpace())
+				continue;
 
 			var startsWithParameterPrefix = segment.StartsWith(CommandOption.Prefix);
 			if (!startsWithParameterPrefix &&
