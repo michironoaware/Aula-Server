@@ -24,7 +24,7 @@ internal static class DependencyInjection
 		{
 			_ = builder
 				.UseLazyLoadingProxies()
-				.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+				.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
 				.SeedGlobalRole(serviceProvider);
 
 			_ = settings.Provider switch
