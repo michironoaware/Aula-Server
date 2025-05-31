@@ -1,4 +1,6 @@
-﻿namespace Aula.Server.Shared.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Aula.Server.Shared.Persistence;
 
 /// <summary>
 ///     Persistence and database related configurations.
@@ -20,4 +22,9 @@ internal sealed class PersistenceOptions
 	public Int32 PostgresVersionMajor { get; set; } = 16;
 
 	public Int32 PostgresVersionMinor { get; set; }
+
+	/// <summary>
+	///     Indicates how the related collections in a query should be loaded from database.
+	/// </summary>
+	public QuerySplittingBehavior QuerySplittingBehavior { get; set; } = QuerySplittingBehavior.SingleQuery;
 }

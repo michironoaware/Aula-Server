@@ -30,9 +30,9 @@ internal static class DependencyInjection
 			_ = settings.Provider switch
 			{
 				PersistenceProvider.Sqlite => builder.UseSqlite(settings.ConnectionString,
-					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery)),
+					o => o.UseQuerySplittingBehavior(settings.QuerySplittingBehavior)),
 				PersistenceProvider.Postgres => builder.UseNpgsql(settings.ConnectionString,
-					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery)
+					o => o.UseQuerySplittingBehavior(settings.QuerySplittingBehavior)
 						.SetPostgresVersion(settings.PostgresVersionMajor, settings.PostgresVersionMinor)),
 				_ => throw new NotImplementedException(),
 			};
