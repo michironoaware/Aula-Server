@@ -28,6 +28,6 @@ internal class MessageUserJoin
 	[ForeignKey(nameof(UserId))]
 	public virtual User User { get; init; } = null!;
 
-	[ForeignKey(nameof(PreviousRoom))]
+	[ForeignKey(nameof(PreviousRoomId))]
 	public virtual Room? PreviousRoom { get; init; }
 }

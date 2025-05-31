@@ -28,6 +28,6 @@ internal class MessageUserLeave
 	[ForeignKey(nameof(UserId))]
 	public virtual User User { get; init; } = null!;
 
-	[ForeignKey(nameof(NextRoom))]
+	[ForeignKey(nameof(NextRoomId))]
 	public virtual Room? NextRoom { get; init; }
 }
