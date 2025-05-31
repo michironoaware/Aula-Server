@@ -1,7 +1,7 @@
 ﻿using Aula.Server.Features.Commands.Help;
 using Aula.Server.Shared.Cli;
 
-namespace Aula.Server.Features.Commands.User;
+namespace Aula.Server.Features.Commands.Users;
 
 internal sealed class UserCommand : Command
 {
