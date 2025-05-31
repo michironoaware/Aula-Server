@@ -25,24 +25,18 @@ internal sealed class DefaultLogger : ILogger
 		if (!IsEnabled(logLevel))
 			return;
 
-		var now = DateTime.UtcNow;
 		var originalColor = Console.ForegroundColor;
 		var logLevelColor = GetLogLevelColor(logLevel);
 		var logLevelName = GetLogLevelString(logLevel);
 
-		Console.ForegroundColor = ConsoleColor.Gray;
-		Console.Write(
-			$"{now.Year}/{now.Month}/{now.Day} {now.Hour:D2}:{now.Minute:D2}:{now.Second:D2}:{now.Millisecond:D3}");
 		Console.ForegroundColor = logLevelColor;
-		Console.WriteLine($" [ {eventId.Id}: {logLevelName} ]");
-
-		Console.ForegroundColor = ConsoleColor.Gray;
-		Console.Write($"    {_name}");
+		Console.Write($" [ {eventId.Id}: {logLevelName} ]");
 		Console.ForegroundColor = ConsoleColor.DarkGray;
 		Console.Write(" - ");
+		Console.ForegroundColor = ConsoleColor.Gray;
+		Console.WriteLine(_name);
 		Console.ForegroundColor = logLevelColor;
 		Console.WriteLine($"{formatter(state, exception)}");
-
 		Console.ForegroundColor = originalColor;
 	}
 
