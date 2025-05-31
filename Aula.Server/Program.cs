@@ -36,8 +36,14 @@ var startTimestamp = Stopwatch.GetTimestamp();
 var builder = WebApplication.CreateBuilder(args);
 
 var appDir = Directory.GetCurrentDirectory();
-builder.Configuration.AddJsonFile(Path.GetFullPath(Path.Combine(appDir, "configuration.json")), true, true);
-builder.Configuration.AddJsonFile(Path.GetFullPath(Path.Combine(appDir, "../configuration.json")), true, true);
+String[] configFilePaths =
+[
+	"configuration.json",
+	"../configuration.json",
+	"../etc/secrets/configuration.json",
+];
+foreach (var configFilePath in configFilePaths)
+	_ = builder.Configuration.AddJsonFile(Path.GetFullPath(Path.Combine(appDir, configFilePath)), true, true);
 
 builder.Services
 	.AddCors(options =>
