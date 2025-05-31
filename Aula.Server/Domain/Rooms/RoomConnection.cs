@@ -5,7 +5,7 @@ using Aula.Server.Shared.Snowflakes;
 
 namespace Aula.Server.Domain.Rooms;
 
-internal sealed class RoomConnection : DomainEntity
+internal class RoomConnection : DomainEntity
 {
 	[SetsRequiredMembers]
 	internal RoomConnection(Snowflake id, Snowflake sourceRoomId, Snowflake destinationRoomId)
@@ -28,8 +28,8 @@ internal sealed class RoomConnection : DomainEntity
 	public required Snowflake DestinationRoomId { get; init; }
 
 	[ForeignKey(nameof(SourceRoomId))]
-	public Room SourceRoom { get; init; } = null!;
+	public virtual Room SourceRoom { get; init; } = null!;
 
 	[ForeignKey(nameof(DestinationRoomId))]
-	public Room TargetRoom { get; init; } = null!;
+	public virtual Room TargetRoom { get; init; } = null!;
 }

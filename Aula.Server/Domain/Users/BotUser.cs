@@ -3,7 +3,7 @@ using Aula.Server.Shared.Snowflakes;
 
 namespace Aula.Server.Domain.Users;
 
-internal sealed class BotUser : User
+internal class BotUser : User
 {
 	[SetsRequiredMembers]
 	internal BotUser(

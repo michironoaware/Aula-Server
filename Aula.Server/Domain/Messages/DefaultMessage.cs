@@ -4,7 +4,7 @@ using Aula.Server.Shared.Snowflakes;
 
 namespace Aula.Server.Domain.Messages;
 
-internal sealed class DefaultMessage : Message
+internal class DefaultMessage : Message
 {
 	internal const Int32 TextMinLength = 1;
 	internal const Int32 TextMaxLength = 2048;

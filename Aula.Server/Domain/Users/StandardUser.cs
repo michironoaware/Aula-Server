@@ -4,7 +4,7 @@ using Aula.Server.Shared.Snowflakes;
 
 namespace Aula.Server.Domain.Users;
 
-internal sealed class StandardUser : User
+internal class StandardUser : User
 {
 	internal const String UserNameValidChars = $"{LowercaseCharacters}{Digits}._";
 	internal const Int32 UserNameMinLength = 6;
