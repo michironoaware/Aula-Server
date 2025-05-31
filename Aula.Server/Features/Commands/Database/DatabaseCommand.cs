@@ -8,7 +8,7 @@ internal sealed class DatabaseCommand : Command
 	public DatabaseCommand(IServiceProvider serviceProvider)
 		: base(serviceProvider)
 	{
-		AddSubCommand<ApplyMigrationsCommand>();
+		AddSubCommand<ApplyMigrationsSubCommand>();
 	}
 
 	internal override String Name => "db";

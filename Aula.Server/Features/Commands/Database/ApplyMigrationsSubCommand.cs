@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Aula.Server.Features.Commands.Database;
 
 [CommandLineIgnore]
-internal sealed partial class ApplyMigrationsCommand : Command
+internal sealed partial class ApplyMigrationsSubCommand : Command
 {
 	private static readonly CommandOption s_forceOption = new()
 	{
@@ -16,7 +16,7 @@ internal sealed partial class ApplyMigrationsCommand : Command
 		CanOverflow = false,
 	};
 
-	public ApplyMigrationsCommand(IServiceProvider serviceProvider)
+	public ApplyMigrationsSubCommand(IServiceProvider serviceProvider)
 		: base(serviceProvider)
 	{
 		AddOptions(s_forceOption);
@@ -30,7 +30,7 @@ internal sealed partial class ApplyMigrationsCommand : Command
 	{
 		ct.ThrowIfCancellationRequested();
 
-		var logger = ServiceProvider.GetRequiredService<ILogger<ApplyMigrationsCommand>>();
+		var logger = ServiceProvider.GetRequiredService<ILogger<ApplyMigrationsSubCommand>>();
 		LogConsequences(logger);
 
 		var force = args.ContainsKey(s_forceOption.Name);
