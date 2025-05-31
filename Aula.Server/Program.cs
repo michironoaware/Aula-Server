@@ -1,6 +1,7 @@
 #pragma warning disable CA1848
 
 using System.Diagnostics;
+using System.IO;
 using Aula.Server.Features.Files.GetFileContent;
 using Aula.Server.Features.Files.UploadFile;
 using Aula.Server.Features.Gateway.ConnectToGateway;
@@ -34,6 +35,7 @@ using Scalar.AspNetCore;
 var startTimestamp = Stopwatch.GetTimestamp();
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory());
 builder.Configuration.AddJsonFile("configuration.json", true, true);
 builder.Configuration.AddJsonFile("../configuration.json", true, true);
 
