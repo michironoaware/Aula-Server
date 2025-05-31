@@ -7,7 +7,10 @@ internal sealed class UserCommand : Command
 {
 	public UserCommand(IServiceProvider serviceProvider)
 		: base(serviceProvider)
-	{ }
+	{
+		AddSubCommand<AssignRoleSubCommand>();
+		AddSubCommand<RevokeRoleSubCommand>();
+	}
 
 	internal override String Name => "user";
 
