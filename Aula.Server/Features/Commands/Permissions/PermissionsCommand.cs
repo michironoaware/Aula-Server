@@ -3,9 +3,9 @@ using Aula.Server.Shared.Cli;
 
 namespace Aula.Server.Features.Commands.Permissions;
 
-internal sealed class PermissionsSubCommand : Command
+internal sealed class PermissionsCommand : Command
 {
-	public PermissionsSubCommand(IServiceProvider serviceProvider)
+	public PermissionsCommand(IServiceProvider serviceProvider)
 		: base(serviceProvider)
 	{
 		AddSubCommand<ListPermissionsSubCommand>();
