@@ -12,9 +12,6 @@ Inspired by the interactive novel [ESC](https://store.steampowered.com/app/13188
 Aula provides a space where users can connect,
 communicate, and collaboratively build narratives without relying on graphic or visual elements.
 
-The project is designed to ensure privacy and control,
-with a roles and permissions system similar to [Discord](https://discord.com).
-
 ## APIs
 
 The system has two main APIs:
