@@ -45,7 +45,7 @@ and client-side usage: [aula.js – Official JavaScript Client](https://github.c
 
 Before running the server, you need to add your custom configurations.
 For details, see this resource:
-[configuration.json file](#configuration.json-file)
+[configuration.json file](#configurationjson-file)
 
 ### Build and Run
 
