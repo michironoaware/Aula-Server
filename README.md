@@ -67,7 +67,8 @@ This generates the compiled files in: `Aula.Server/bin/Release/net9.0/`.
    cd bin/Release/net9.0
 ```
 4. Run the server:
-   On Windows:
+
+On Windows:
 ```bash
    Aula.Server.exe
 ```
